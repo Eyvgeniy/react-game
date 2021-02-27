@@ -1,0 +1,30 @@
+import { useEffect } from 'react';
+
+const useRafHook = (loop, speed) => {
+  useEffect(() => {
+    let startTime = 0,
+      currentTime = 0,
+      time = 0,
+      id;
+
+    const render = () => {
+      if (startTime === 0) {
+        startTime = new Date().getTime();
+      }
+      currentTime = new Date().getTime();
+      time = currentTime - startTime;
+
+      id = window.requestAnimationFrame(render);
+      if (time > speed) {
+        startTime = 0;
+        loop();
+      }
+    };
+    render();
+    return () => {
+      window.cancelAnimationFrame(id);
+    };
+  });
+};
+
+export default useRafHook;
