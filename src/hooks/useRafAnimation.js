@@ -7,6 +7,9 @@ const useRafHook = (loop, speed) => {
       time = 0,
       id;
 
+    if (speed === null) {
+      return;
+    }
     const render = () => {
       if (startTime === 0) {
         startTime = new Date().getTime();
@@ -20,6 +23,7 @@ const useRafHook = (loop, speed) => {
         loop();
       }
     };
+
     render();
     return () => {
       window.cancelAnimationFrame(id);

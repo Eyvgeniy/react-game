@@ -16,8 +16,16 @@ const defaultGameState = {
   dy: 20,
   moveQueue: [],
   apple: { x: 150, y: 110, ate: false },
-  speed: 500,
+  speed: 100,
   score: 0,
+  isGameOver: false,
+};
+
+const isCollision = (head, tail) => {
+  if (tail.length > 4) {
+    const idx = tail.findIndex((el) => el.x === head.x && el.y === head.y);
+    return idx >= 0;
+  }
 };
 
 const reducer = (state, action) => {
@@ -31,10 +39,18 @@ const reducer = (state, action) => {
       } = settings;
       const currentX = x < 10 ? width - ceil / 2 : x > width - ceil / 2 ? ceil / 2 : x;
       const currentY = y < 10 ? height - ceil / 2 : y > height - ceil / 2 ? ceil / 2 : y;
+
+      const collision = isCollision({ x: currentX, y: currentY }, tail);
+
+      if (collision) {
+        return { ...state, isGameOver: true };
+      }
+
       const newTail = [{ x: currentX, y: currentY }, ...tail];
       if (newTail.length > state.cells) {
         newTail.pop();
       }
+
       return { ...state, tail: newTail };
     }
     case actionTypes.changeDirection: {
