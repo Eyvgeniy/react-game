@@ -32,23 +32,64 @@ button:focus {
   bottom: 10px;
 }
 
-.button-arrow-up {
+.button-arrow {
+  position: absolute;
+  bottom: 15px;
+
   display: block;
   position: relative;
   width: 40px;
   height: 40px;
-  background-color: yellow;
+  background-color: #f5d30a;
   cursor: pointer;
   border: solid 1px wheat;
   border-radius: 50%;
 }
 
-.arrow-up {
+.arrow {
   position: absolute;
   right: 4px;
   bottom: 14px;
   border: 15px solid transparent;
   border-bottom: 13px solid white;
+}
+
+.button-arrow-down {
+  position: absolute;
+  bottom: 0px;
+
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: #f5d30a;
+  cursor: pointer;
+  border: solid 1px wheat;
+  border-radius: 50%;
+}
+
+.arrow-down {
+  position: absolute;
+  right: 4px;
+  top: 15px;
+  border: 15px solid transparent;
+  border-bottom: 13px solid white;
+
+  transform: rotate(180deg);
+}
+
+.right {
+  position: absolute;
+  right: -45px;
+  top: 15px;
+  transform: rotate(90deg);
+}
+
+.left {
+  position: absolute;
+  right: 45px;
+  top: 15px;
+  transform: rotate(270deg);
 }
 
 .button {
@@ -62,7 +103,7 @@ button:focus {
 
   width: 50px;
   height: 50px;
-  background-color: yellow;
+  background-color: #f5d30a;
   cursor: pointer;
   border: solid 1px wheat;
   border-radius: 50%;

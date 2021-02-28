@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Menu from './components/Menu';
 import Title from './components/Title';
 import Canvas from './components/Canvas';
+import Options from './components/Options';
 import useGameReducer from './state/reducer';
 import githubImage from './assets/images/gitHub.png';
 import rsSchool from './assets/images/rs_school.svg';
@@ -11,6 +12,7 @@ const menuMap = {
   title: Title,
   menu: Menu,
   game: Canvas,
+  options: Options,
 };
 function App() {
   const [menu, setMenu] = useState('title');
@@ -37,8 +39,17 @@ function App() {
           <p class="menu-button-label">Menu</p>
         </div>
         <div className="arrow-buttons">
-          <button className="button-arrow-up">
-            <div className="arrow-up"></div>
+          <button className="button-arrow">
+            <div className="arrow"></div>
+          </button>
+          <button className="button-arrow-down">
+            <div className="arrow-down"></div>
+          </button>
+          <button className="button-arrow right">
+            <div className="arrow"></div>
+          </button>
+          <button className="button-arrow left">
+            <div className="arrow"></div>
           </button>
         </div>
         <footer>
