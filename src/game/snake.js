@@ -3,9 +3,9 @@
 import settings from './settings';
 
 class Snake {
-  constructor(state, setState) {
+  constructor(state, actions) {
     this.state = state;
-    this.setState = setState;
+    this.actions = actions;
   }
 
   _moveSnake = () => {
@@ -17,21 +17,17 @@ class Snake {
     const newY = y + dy;
     let newTail = [{ x: newX, y: newY }, ...tail];
     if (apple.x === newX && apple.y === newY) {
-      this.setState((state) => ({ ...state, apple: { ...state.apple, ate: true } }));
-      this.setState((state) => ({ ...state, cells: state.cells + 1 }));
-      this.setState((state) => ({ ...state, score: state.score + 1 }));
-      this.setState((state) => ({ ...state, speed: state.speed - 5 }));
+      this.actions.eatApple();
+    } else {
+      this.actions.move({ x: newX, y: newY });
     }
 
-    if (newTail.length > cells) {
-      newTail.pop();
-    }
-
+    // this.actions.getMove();
     // this.setState((state) => ({ ...state, x: newX }));
     // this.setState((state) => ({ ...state, y: newY }));
-    this.setState((state) => {
-      return { ...state, tail: newTail };
-    });
+    // this.setState((state) => {
+    //   return { ...state, tail: newTail };
+    // });
   };
 }
 

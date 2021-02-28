@@ -1,20 +1,23 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import githubImage from './assets/images/gitHub.png';
 import rsSchool from './assets/images/rs_school.svg';
 import Menu from './components/Menu';
 import Title from './components/Title';
-import Game from './components/Game';
-import useGameState from './state/gameState';
+import Canvas from './components/Canvas';
+// import Game from './components/Game';
+// import useGameState from './state/gameState';
+import useGameReducer from './state/reducer';
 import './App.css';
 
 const menuMap = {
   title: Title,
   menu: Menu,
-  game: Game,
+  game: Canvas,
 };
 function App() {
   const [menu, setMenu] = useState('title');
-  const [gameState, setGameState] = useGameState();
+  // const [gameState, setGameState] = useGameState();
+  const [gameState, actions] = useGameReducer();
 
   useEffect(() => {
     const keyDown = () => {
@@ -29,9 +32,10 @@ function App() {
   return (
     <>
       <div className="App">
-        {/* <canvas ref={canvasRef} width={400} height={300} /> */}
         <div className="screen">
-          <CurrentMenu change={setMenu} state={gameState} setState={setGameState} />
+          <CurrentMenu change={setMenu} state={gameState} actions={actions} />
+          {/* <Canvas change={setMenu} state={gameState} actions={actions} />
+          <Game change={setMenu} state={gameState} actions={actions} /> */}
         </div>
         <footer>
           <div className="links">

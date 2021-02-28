@@ -3,12 +3,12 @@ import Snake from './snake';
 import settings from './settings';
 
 class Game {
-  constructor(state, setState, ctx) {
+  constructor(state, actions, ctx) {
     this.state = state;
-    this.setState = setState;
+    this.actions = actions;
     this.ctx = ctx;
-    this.board = new Board(state, settings, ctx);
-    this.snake = new Snake(state, setState);
+    // this.board = new Board(state, settings, ctx);
+    this.snake = new Snake(state, actions);
   }
 
   _renderLoop = () => {
@@ -17,7 +17,12 @@ class Game {
   };
 
   _gameLoop = () => {
+    this.actions.getMove();
     this.snake._moveSnake();
+  };
+
+  _getMove = () => {
+    this.actions.getMove();
   };
 }
 

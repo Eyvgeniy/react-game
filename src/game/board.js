@@ -19,6 +19,12 @@ class Board {
     this.ctx = ctx;
   }
 
+  _renderLoop = () => {
+    this._renderField();
+    this._renderSnake();
+    this._renderApple();
+  };
+
   _renderField() {
     const { board, ceil, colors, frame2 } = this.settings;
 
