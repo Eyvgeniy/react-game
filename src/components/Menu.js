@@ -1,9 +1,16 @@
+import { useEffect } from 'react';
+import sounds from '../game/sounds';
+
 const Menu = (props) => {
   const { change, actions, state } = props;
   const handleNewGame = (e) => {
     change('game');
     actions.setDefault();
   };
+
+  useEffect(() => {
+    sounds.playList.music.play();
+  }, []);
   return (
     <ul>
       <li onClick={handleNewGame}>

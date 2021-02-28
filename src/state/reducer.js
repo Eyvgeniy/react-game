@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 import createApple from '../game/apple';
 import settings from '../game/settings';
+import sounds from '../game/sounds';
 
 const actionTypes = {
   move: 'MOVE',
@@ -45,6 +46,7 @@ const reducer = (state, action) => {
       const collision = isCollision({ x: currentX, y: currentY }, tail);
 
       if (collision) {
+        sounds.playList.end.play();
         return { ...state, isGameOver: true, isStart: false };
       }
 
@@ -91,6 +93,7 @@ const reducer = (state, action) => {
     case actionTypes.eatApple: {
       const { cells, apple, score, tail } = state;
       const { x, y } = createApple(state);
+      sounds.playList.eat.play();
       return {
         ...state,
         cells: cells + 1,
