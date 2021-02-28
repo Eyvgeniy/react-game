@@ -10,7 +10,7 @@ const Game = (props) => {
   const canvasRef = useRef();
   const game = new SnakeGame(state, actions);
   useKeyDown(change, actions);
-  useRafHook(() => game._gameLoop(), 1000);
+  useRafHook(() => game._gameLoop(), 100);
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');

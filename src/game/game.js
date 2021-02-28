@@ -17,7 +17,7 @@ class Game {
   };
 
   _gameLoop = () => {
-    this.actions.getMove();
+    // this.actions.getMove();
     this.snake._moveSnake();
   };
 

@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import createApple from '../game/apple';
 import settings from '../game/settings';
 
 const actionTypes = {
@@ -71,12 +72,13 @@ const reducer = (state, action) => {
 
     case actionTypes.eatApple: {
       const { cells, apple, score, tail } = state;
+      const { x, y } = createApple(state);
       return {
         ...state,
         cells: cells + 1,
         score: score + 1,
         tail: [{ x: apple.x, y: apple.y }, ...tail],
-        apple: { x: 200, y: 200 },
+        apple: { x, y },
       };
     }
 

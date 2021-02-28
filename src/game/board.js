@@ -26,11 +26,8 @@ class Board {
   };
 
   _renderField() {
-    const { board, ceil, colors, frame2 } = this.settings;
-
-    // this._renderFirstFrame();
+    const { board, ceil } = this.settings;
     this._renderSecondFrame();
-
     for (let i = board.x; i <= board.width; i += ceil) {
       for (let j = board.y; j <= board.height; j += ceil) {
         this._renderFieldRect(i, j);
