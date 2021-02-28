@@ -20,10 +20,17 @@ class Sounds {
   _addSound(name, filepath) {
     this.playList[name] = new Audio(filepath);
   }
+
+  _changeVolume(volume) {
+    Object.values(this.playList).forEach((sound) => {
+      sound.volume = volume;
+    });
+  }
 }
 
 const sounds = new Sounds();
 soundsArr.forEach(([name, path]) => sounds._addSound(name, path));
+sounds._changeVolume(0.05);
 sounds.playList.music.loop = true;
 
 export default sounds;

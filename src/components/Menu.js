@@ -9,7 +9,7 @@ const Menu = (props) => {
   };
 
   useEffect(() => {
-    // sounds.playList.music.play();
+    sounds.playList.music.play();
   }, []);
   return (
     <ul>
@@ -21,7 +21,7 @@ const Menu = (props) => {
           <h2>Continue</h2>
         </li>
       )}
-      <li>
+      <li onClick={() => change('options')}>
         <h2>Options</h2>
       </li>
       <li>
