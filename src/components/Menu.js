@@ -9,7 +9,7 @@ const Menu = (props) => {
   };
 
   useEffect(() => {
-    sounds.playList.music.play();
+    // sounds.playList.music.play();
   }, []);
   return (
     <ul>

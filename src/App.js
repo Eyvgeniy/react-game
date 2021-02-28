@@ -32,6 +32,15 @@ function App() {
         <div className="screen">
           <CurrentMenu change={setMenu} state={gameState} actions={actions} />
         </div>
+        <div class="button">
+          <button class="menu-button" onClick={() => setMenu('menu')} />
+          <p class="menu-button-label">Menu</p>
+        </div>
+        <div className="arrow-buttons">
+          <button className="button-arrow-up">
+            <div className="arrow-up"></div>
+          </button>
+        </div>
         <footer>
           <div className="links">
             <div>

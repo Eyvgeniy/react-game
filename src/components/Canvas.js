@@ -19,7 +19,7 @@ const Game = (props) => {
     board._renderLoop();
   }, [state.tail, isGameOver]);
 
-  return <canvas tabIndex="0" ref={canvasRef} width={560} height={440} />;
+  return <canvas tabIndex="0" ref={canvasRef} width={560} height={400} />;
 };
 
 export default Game;

@@ -21,7 +21,7 @@ const rect = {
 };
 
 const width = 420;
-const height = 420;
+const height = 380;
 const board = {
   x: 10,
   y: 10,
@@ -36,7 +36,7 @@ const frame2 = {
   x: 6,
   y: 6,
   width: 428,
-  height: 428,
+  height: 388,
 };
 
 const sounds = [
