@@ -7,6 +7,7 @@ const actionTypes = {
   changeDirection: 'CHANGE_DIRECTION',
   getMove: 'GET_MOVE',
   eatApple: 'EAT_APPLE',
+  setDefault: 'SET_DEFAUL',
 };
 
 const defaultGameState = {
@@ -19,6 +20,7 @@ const defaultGameState = {
   speed: 100,
   score: 0,
   isGameOver: false,
+  isStart: false,
 };
 
 const isCollision = (head, tail) => {
@@ -43,7 +45,7 @@ const reducer = (state, action) => {
       const collision = isCollision({ x: currentX, y: currentY }, tail);
 
       if (collision) {
-        return { ...state, isGameOver: true };
+        return { ...state, isGameOver: true, isStart: false };
       }
 
       const newTail = [{ x: currentX, y: currentY }, ...tail];
@@ -51,7 +53,7 @@ const reducer = (state, action) => {
         newTail.pop();
       }
 
-      return { ...state, tail: newTail };
+      return { ...state, tail: newTail, isStart: true };
     }
     case actionTypes.changeDirection: {
       const { movement } = action.payload;
@@ -98,6 +100,10 @@ const reducer = (state, action) => {
       };
     }
 
+    case actionTypes.setDefault: {
+      return { ...defaultGameState };
+    }
+
     default:
       throw new Error('Unknow type of action');
   }
@@ -118,6 +124,10 @@ const useGameReducer = (gameState = defaultGameState) => {
     },
     eatApple: () => {
       dispatch({ type: actionTypes.eatApple });
+    },
+
+    setDefault: () => {
+      dispatch({ type: actionTypes.setDefault });
     },
   };
 

@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import githubImage from './assets/images/gitHub.png';
-import rsSchool from './assets/images/rs_school.svg';
 import Menu from './components/Menu';
 import Title from './components/Title';
 import Canvas from './components/Canvas';
-// import Game from './components/Game';
-// import useGameState from './state/gameState';
 import useGameReducer from './state/reducer';
+import githubImage from './assets/images/gitHub.png';
+import rsSchool from './assets/images/rs_school.svg';
 import './App.css';
 
 const menuMap = {
@@ -16,7 +14,6 @@ const menuMap = {
 };
 function App() {
   const [menu, setMenu] = useState('title');
-  // const [gameState, setGameState] = useGameState();
   const [gameState, actions] = useGameReducer();
 
   useEffect(() => {
@@ -34,8 +31,6 @@ function App() {
       <div className="App">
         <div className="screen">
           <CurrentMenu change={setMenu} state={gameState} actions={actions} />
-          {/* <Canvas change={setMenu} state={gameState} actions={actions} />
-          <Game change={setMenu} state={gameState} actions={actions} /> */}
         </div>
         <footer>
           <div className="links">

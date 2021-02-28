@@ -7,17 +7,17 @@ import settings from '../game/settings';
 
 const Game = (props) => {
   const { change, state, actions } = props;
-  const { isGameOVer, speed } = state;
+  const { isGameOver, speed } = state;
   const canvasRef = useRef();
   const game = new SnakeGame(state, actions);
+  useRafHook(() => game._gameLoop(), isGameOver ? null : speed);
   useKeyDown(change, actions);
-  useRafHook(() => game._gameLoop(), isGameOVer ? null : speed);
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const board = new Board(state, settings, ctx);
     board._renderLoop();
-  }, [state.tail]);
+  }, [state.tail, isGameOver]);
 
   return <canvas tabIndex="0" ref={canvasRef} width={560} height={440} />;
 };

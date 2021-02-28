@@ -1,10 +1,25 @@
 const Menu = (props) => {
-  const { change } = props;
+  const { change, actions, state } = props;
+  const handleNewGame = (e) => {
+    change('game');
+    actions.setDefault();
+  };
   return (
     <ul>
-      <li onClick={() => change('game')}>New Game</li>
-      <li>Options</li>
-      <li>Record Table</li>
+      <li onClick={handleNewGame}>
+        <h2>New Game</h2>
+      </li>
+      {state.isStart && (
+        <li onClick={() => change('game')}>
+          <h2>Continue</h2>
+        </li>
+      )}
+      <li>
+        <h2>Options</h2>
+      </li>
+      <li>
+        <h2>Record Table</h2>
+      </li>
     </ul>
   );
 };

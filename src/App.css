@@ -62,6 +62,10 @@ ul {
   list-style: none;
 }
 
+li:hover {
+  transform: scale(1.2);
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
