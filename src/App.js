@@ -39,10 +39,10 @@ function App({ savedState }) {
           <p className="menu-button-label">Menu</p>
         </div>
         <div className="arrow-buttons">
-          <button className="button-arrow">
+          <button className="button-arrow up">
             <div className="arrow"></div>
           </button>
-          <button className="button-arrow-down">
+          <button className="button-arrow down">
             <div className="arrow-down"></div>
           </button>
           <button className="button-arrow right">

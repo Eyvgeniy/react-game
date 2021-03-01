@@ -11,18 +11,30 @@ const useKeyDown = (change, actions) => {
       if (e.keyCode === 37) {
         dx = -20;
         dy = 0;
+        const button = document.querySelector('.button-arrow.left');
+        button.classList.toggle('active');
+        setTimeout(() => button.classList.toggle('active'), 100);
       }
       if (e.keyCode === 38) {
         dx = 0;
         dy = -20;
+        const button = document.querySelector('.button-arrow.up');
+        button.classList.toggle('active');
+        setTimeout(() => button.classList.toggle('active'), 100);
       }
       if (e.keyCode === 39) {
         dx = 20;
         dy = 0;
+        const button = document.querySelector('.button-arrow.right');
+        button.classList.toggle('active');
+        setTimeout(() => button.classList.toggle('active'), 100);
       }
       if (e.keyCode === 40) {
         dx = 0;
         dy = 20;
+        const button = document.querySelector('.button-arrow.down');
+        button.classList.toggle('active');
+        setTimeout(() => button.classList.toggle('active'), 100);
       }
       actions.changeDirection({ dx, dy });
     };

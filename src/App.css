@@ -54,9 +54,9 @@ button:focus {
   border-bottom: 13px solid white;
 }
 
-.button-arrow-down {
+.button-arrow.down {
   position: absolute;
-  bottom: 0px;
+  top: 5px;
 
   display: block;
   position: relative;
@@ -90,6 +90,10 @@ button:focus {
   right: 45px;
   top: 15px;
   transform: rotate(270deg);
+}
+
+.button-arrow.active {
+  opacity: 50%;
 }
 
 .button {
