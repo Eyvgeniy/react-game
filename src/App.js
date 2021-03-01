@@ -14,10 +14,10 @@ const menuMap = {
   game: Canvas,
   options: Options,
 };
-function App() {
-  const [menu, setMenu] = useState('title');
-  const [gameState, actions] = useGameReducer();
 
+function App({ savedState }) {
+  const [menu, setMenu] = useState('title');
+  const [gameState, actions] = useGameReducer(savedState);
   useEffect(() => {
     const keyDown = () => {
       setMenu('menu');
@@ -34,9 +34,9 @@ function App() {
         <div className="screen">
           <CurrentMenu change={setMenu} state={gameState} actions={actions} />
         </div>
-        <div class="button">
-          <button class="menu-button" onClick={() => setMenu('menu')} />
-          <p class="menu-button-label">Menu</p>
+        <div className="button">
+          <button className="menu-button" onClick={() => setMenu('menu')} />
+          <p className="menu-button-label">Menu</p>
         </div>
         <div className="arrow-buttons">
           <button className="button-arrow">

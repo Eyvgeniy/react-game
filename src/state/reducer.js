@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import { setToLocalStorage } from '../utils/localStorage';
 import createApple from '../game/apple';
 import settings from '../game/settings';
 import sounds from '../game/sounds';
@@ -54,8 +55,9 @@ const reducer = (state, action) => {
       if (newTail.length > state.cells) {
         newTail.pop();
       }
-
-      return { ...state, tail: newTail, isStart: true };
+      const newState = { ...state, tail: newTail, isStart: true };
+      setToLocalStorage(newState);
+      return newState;
     }
     case actionTypes.changeDirection: {
       const { movement } = action.payload;
@@ -112,8 +114,9 @@ const reducer = (state, action) => {
   }
 };
 
-const useGameReducer = (gameState = defaultGameState) => {
-  const [state, dispatch] = useReducer(reducer, gameState);
+const useGameReducer = (gameState) => {
+  const currentState = gameState || defaultGameState;
+  const [state, dispatch] = useReducer(reducer, currentState);
 
   const actions = {
     move: (coords) => {
