@@ -5,26 +5,28 @@ const Sounds = (props) => {
 
   return (
     <ul>
-      <li>
-        <span>Music</span>..............
-        <span>ON</span>
-      </li>
-      <li>
-        <input type="range" />
-      </li>
-      <li>
-        <span>Sounds</span>...........
-        <span onClick={(e) => actions.changeSoundVolume(0)}>{state.sound.on ? 'On' : 'Off'}</span>
-      </li>
+      <li>Music</li>
       <li>
         <input
           type="range"
           min="0"
           max="0.5"
           step="0.05"
-          value={state.sound.volume}
-          onChange={(e) => actions.changeSoundVolume(e.target.value)}
+          value={state.music}
+          onChange={(e) => actions.changeMusicVolume(e.target.value)}
         />
+      </li>
+      <hr />
+      <li>Sounds</li>
+      <li>
+        {/* <input
+          type="range"
+          min="0"
+          max="0.5"
+          step="0.05"
+          value={state.sound}
+          onChange={(e) => actions.changeSoundVolume(e.target.value)}
+        /> */}
       </li>
     </ul>
   );

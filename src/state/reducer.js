@@ -11,6 +11,7 @@ const actionTypes = {
   eatApple: 'EAT_APPLE',
   setDefault: 'SET_DEFAUL',
   changeSoundVolume: 'CHANGE_SOUND_VOLUME',
+  changeMusicVolume: 'CHANGE_MUSIC_VOLUME',
 };
 
 const defaultGameState = {
@@ -24,14 +25,8 @@ const defaultGameState = {
   score: 0,
   isGameOver: false,
   isStart: false,
-  sound: {
-    on: true,
-    volume: 0.1,
-  },
-  music: {
-    on: true,
-    volume: 0.1,
-  },
+  sound: 0.1,
+  music: 0.1,
 };
 
 const isCollision = (head, tail) => {
@@ -123,7 +118,13 @@ const reducer = (state, action) => {
     case actionTypes.changeSoundVolume: {
       const volume = action.payload;
       sounds._changeSoundsVolume(volume);
-      return { ...state, sound: { ...state.sound, volume: volume } };
+      return { ...state, sound: volume };
+    }
+
+    case actionTypes.changeMusicVolume: {
+      const volume = action.payload;
+      sounds._changeMusicVolume(volume);
+      return { ...state, music: volume };
     }
 
     default:
@@ -155,6 +156,9 @@ const useGameReducer = (gameState) => {
 
     changeSoundVolume: (volume) => {
       dispatch({ type: actionTypes.changeSoundVolume, payload: volume });
+    },
+    changeMusicVolume: (volume) => {
+      dispatch({ type: actionTypes.changeMusicVolume, payload: volume });
     },
   };
 
