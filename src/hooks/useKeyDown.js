@@ -36,7 +36,7 @@ const useKeyDown = (change, actions) => {
         button.classList.toggle('active');
         setTimeout(() => button.classList.toggle('active'), 100);
       }
-      actions.changeDirection({ dx, dy });
+      if (dx || dy) actions.changeDirection({ dx, dy });
     };
 
     window.addEventListener('keydown', keyDownHandler, false);
