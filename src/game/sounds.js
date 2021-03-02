@@ -9,28 +9,40 @@ const soundsArr = [
   ['eat', eat],
   ['end', end],
   ['start', start],
-  ['music', music],
 ];
+
+const musicArr = [['music', music]];
 
 class Sounds {
   constructor() {
-    this.playList = {};
+    this.soundsPlaylist = {};
+    this.musicPlaylist = {};
   }
 
   _addSound(name, filepath) {
-    this.playList[name] = new Audio(filepath);
+    this.soundsPlaylist[name] = new Audio(filepath);
   }
 
-  _changeVolume(volume) {
-    Object.values(this.playList).forEach((sound) => {
+  _changeSoundsVolume(volume) {
+    Object.values(this.soundsPlaylist).forEach((sound) => {
       sound.volume = volume;
+    });
+  }
+  _addMusic(name, filepath) {
+    this.musicPlaylist[name] = new Audio(filepath);
+  }
+
+  _changeMusicVolume(volume) {
+    Object.values(this.musicPlaylist).forEach((music) => {
+      music.volume = volume;
     });
   }
 }
 
 const sounds = new Sounds();
 soundsArr.forEach(([name, path]) => sounds._addSound(name, path));
-sounds._changeVolume(0.05);
-sounds.playList.music.loop = true;
+musicArr.forEach(([name, path]) => sounds._addMusic(name, path));
+sounds._changeSoundsVolume(0.1);
+sounds.musicPlaylist.music.loop = true;
 
 export default sounds;

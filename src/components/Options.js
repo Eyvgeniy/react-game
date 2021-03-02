@@ -9,7 +9,7 @@ const map = {
   game: GameOptions,
 };
 
-const Options = () => {
+const Options = (props) => {
   const [state, setState] = useState('sound');
   const CurrentOption = map[state];
   return (
@@ -20,7 +20,7 @@ const Options = () => {
         <button onClick={() => setState('controls')}>Controls</button>
       </div>
       <hr />
-      <CurrentOption />
+      <CurrentOption {...props} />
     </div>
   );
 };

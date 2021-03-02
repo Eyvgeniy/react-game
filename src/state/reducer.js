@@ -10,6 +10,7 @@ const actionTypes = {
   getMove: 'GET_MOVE',
   eatApple: 'EAT_APPLE',
   setDefault: 'SET_DEFAUL',
+  changeSoundVolume: 'CHANGE_SOUND_VOLUME',
 };
 
 const defaultGameState = {
@@ -23,6 +24,14 @@ const defaultGameState = {
   score: 0,
   isGameOver: false,
   isStart: false,
+  sound: {
+    on: true,
+    volume: 0.1,
+  },
+  music: {
+    on: true,
+    volume: 0.1,
+  },
 };
 
 const isCollision = (head, tail) => {
@@ -47,7 +56,7 @@ const reducer = (state, action) => {
       const collision = isCollision({ x: currentX, y: currentY }, tail);
 
       if (collision) {
-        sounds.playList.end.play();
+        sounds.soundsPlaylist.end.play();
         const newState = { ...state, isGameOver: true, isStart: false };
         setToLocalStorage(newState);
         return newState;
@@ -75,9 +84,9 @@ const reducer = (state, action) => {
       if (Math.abs(movement.dx) !== Math.abs(prevX) || Math.abs(movement.dy) !== Math.abs(prevY)) {
         return {
           ...state,
-          // dx: movement.dx,
-          // dy: movement.dy,
-          moveQueue: [...moveQueue, { dx: movement.dx, dy: movement.dy }],
+          dx: movement.dx,
+          dy: movement.dy,
+          // moveQueue: [...moveQueue, { dx: movement.dx, dy: movement.dy }],
         };
       }
 
@@ -97,7 +106,7 @@ const reducer = (state, action) => {
     case actionTypes.eatApple: {
       const { cells, apple, score, tail } = state;
       const { x, y } = createApple(state);
-      sounds.playList.eat.play();
+      sounds.soundsPlaylist.eat.play();
       return {
         ...state,
         cells: cells + 1,
@@ -109,6 +118,12 @@ const reducer = (state, action) => {
 
     case actionTypes.setDefault: {
       return { ...defaultGameState };
+    }
+
+    case actionTypes.changeSoundVolume: {
+      const volume = action.payload;
+      sounds._changeSoundsVolume(volume);
+      return { ...state, sound: { ...state.sound, volume: volume } };
     }
 
     default:
@@ -136,6 +151,10 @@ const useGameReducer = (gameState) => {
 
     setDefault: () => {
       dispatch({ type: actionTypes.setDefault });
+    },
+
+    changeSoundVolume: (volume) => {
+      dispatch({ type: actionTypes.changeSoundVolume, payload: volume });
     },
   };
 
