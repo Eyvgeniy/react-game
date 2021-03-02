@@ -48,7 +48,9 @@ const reducer = (state, action) => {
 
       if (collision) {
         sounds.playList.end.play();
-        return { ...state, isGameOver: true, isStart: false };
+        const newState = { ...state, isGameOver: true, isStart: false };
+        setToLocalStorage(newState);
+        return newState;
       }
 
       const newTail = [{ x: currentX, y: currentY }, ...tail];
@@ -73,9 +75,9 @@ const reducer = (state, action) => {
       if (Math.abs(movement.dx) !== Math.abs(prevX) || Math.abs(movement.dy) !== Math.abs(prevY)) {
         return {
           ...state,
-          dx: movement.dx,
-          dy: movement.dy,
-          // moveQueue: [...moveQueue, { dx: movement.dx, dy: movement.dy }],
+          // dx: movement.dx,
+          // dy: movement.dy,
+          moveQueue: [...moveQueue, { dx: movement.dx, dy: movement.dy }],
         };
       }
 
