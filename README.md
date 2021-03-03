@@ -2,6 +2,8 @@
 
 # Snake game
 
+https://eyvgeniy-react-game.surge.sh/
+
 ## Simple Snake game build on react and canvas
 
 ### 1. Install dependencies:
