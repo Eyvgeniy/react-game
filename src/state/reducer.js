@@ -15,6 +15,7 @@ const actionTypes = {
   changeSpeed: 'CHANGE_SPEED',
   changeSnakeColor: 'CHANGE_SNAKE_COLOR',
   changeAppleColor: 'CHANGE_APPLE_COLOR',
+  toggleWalls: 'TOGGLE_WALLS',
 };
 
 const defaultGameState = {
@@ -37,7 +38,7 @@ const defaultGameState = {
   isStart: false,
   sound: 0.1,
   music: 0.1,
-  walls: true,
+  walls: false,
 };
 
 sounds._changeSoundsVolume(defaultGameState.sound);
@@ -60,12 +61,23 @@ const reducer = (state, action) => {
         ceil,
         board: { width, height },
       } = settings;
-      const currentX = x < 10 ? width - ceil / 2 : x > width - ceil / 2 ? ceil / 2 : x;
-      const currentY = y < 10 ? height - ceil / 2 : y > height - ceil / 2 ? ceil / 2 : y;
+      let currentX, currentY;
+      if (state.walls) {
+        currentX = x;
+        currentY = y;
+      } else {
+        currentX = x < 10 ? width - ceil / 2 : x > width - ceil / 2 ? ceil / 2 : x;
+        currentY = y < 10 ? height - ceil / 2 : y > height - ceil / 2 ? ceil / 2 : y;
+      }
 
       const collision = isCollision({ x: currentX, y: currentY }, tail);
+      const outOfWalls =
+        currentX < 0 ||
+        currentX > settings.board.width ||
+        currentY < 0 ||
+        currentY > settings.board.height;
 
-      if (collision) {
+      if (collision || outOfWalls) {
         sounds.soundsPlaylist.end.play();
         const newState = { ...state, isGameOver: true, isStart: false };
         setToLocalStorage(newState);
@@ -157,6 +169,10 @@ const reducer = (state, action) => {
       const color = action.payload;
       return { ...state, appleColor: color };
     }
+    case actionTypes.toggleWalls: {
+      const walls = action.payload;
+      return { ...state, walls };
+    }
 
     default:
       throw new Error('Unknow type of action');
@@ -199,6 +215,9 @@ const useGameReducer = (gameState) => {
     },
     changeSnakeColor: (value) => {
       dispatch({ type: actionTypes.changeSnakeColor, payload: value });
+    },
+    toggleWalls: (value) => {
+      dispatch({ type: actionTypes.toggleWalls, payload: value });
     },
   };
 

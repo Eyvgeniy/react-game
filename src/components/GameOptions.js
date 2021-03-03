@@ -11,7 +11,10 @@ const GameOptions = (props) => {
   };
   return (
     <ul>
-      <li>Dificulty......................Norma or Hard</li>
+      <li>
+        Walls......................
+        <span onClick={() => actions.toggleWalls(!state.walls)}>{state.walls ? 'On' : 'Off'}</span>
+      </li>
       <li>
         Speed......................<span onClick={handleSpeed}>{state.speed}</span>
       </li>
