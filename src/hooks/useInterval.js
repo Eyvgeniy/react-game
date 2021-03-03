@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+// Powered by Dan Abramov
+
 function useInterval(callback, delay) {
   const savedCallback = useRef();
 
