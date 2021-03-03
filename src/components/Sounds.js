@@ -19,14 +19,14 @@ const Sounds = (props) => {
       <hr />
       <li>Sounds</li>
       <li>
-        {/* <input
+        <input
           type="range"
           min="0"
           max="0.5"
           step="0.05"
           value={state.sound}
           onChange={(e) => actions.changeSoundVolume(e.target.value)}
-        /> */}
+        />
       </li>
     </ul>
   );

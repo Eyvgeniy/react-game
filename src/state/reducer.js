@@ -12,22 +12,40 @@ const actionTypes = {
   setDefault: 'SET_DEFAUL',
   changeSoundVolume: 'CHANGE_SOUND_VOLUME',
   changeMusicVolume: 'CHANGE_MUSIC_VOLUME',
+  changeSpeed: 'CHANGE_SPEED',
 };
 
 const defaultGameState = {
-  tail: [{ x: 50, y: 50 }],
+  tail: [
+    { x: 110, y: 150 },
+    { x: 90, y: 150 },
+    { x: 70, y: 150 },
+    { x: 50, y: 150 },
+  ],
   cells: 4,
-  dx: 0,
-  dy: 20,
+  dx: 20,
+  dy: 0,
   moveQueue: [],
-  apple: { x: 150, y: 110, ate: false },
-  speed: 100,
+  apple: { x: 290, y: 150, ate: false },
+  speed: 1,
   score: 0,
   isGameOver: false,
   isStart: false,
   sound: 0.1,
   music: 0.1,
 };
+
+const speedMap = {
+  1: 150,
+  2: 120,
+  3: 90,
+  4: 60,
+  5: 30,
+};
+
+sounds._changeSoundsVolume(defaultGameState.sound);
+sounds._changeMusicVolume(defaultGameState.music);
+sounds.musicPlaylist.music.loop = true;
 
 const isCollision = (head, tail) => {
   if (tail.length > 4) {
@@ -112,7 +130,8 @@ const reducer = (state, action) => {
     }
 
     case actionTypes.setDefault: {
-      return { ...defaultGameState };
+      const { apple, tail, score, cells, dx, dy } = defaultGameState;
+      return { ...state, apple, tail, score, cells, dx, dy };
     }
 
     case actionTypes.changeSoundVolume: {
@@ -125,6 +144,11 @@ const reducer = (state, action) => {
       const volume = action.payload;
       sounds._changeMusicVolume(volume);
       return { ...state, music: volume };
+    }
+
+    case actionTypes.changeSpeed: {
+      const speed = action.payload;
+      return { ...state, speed };
     }
 
     default:
@@ -159,6 +183,9 @@ const useGameReducer = (gameState) => {
     },
     changeMusicVolume: (volume) => {
       dispatch({ type: actionTypes.changeMusicVolume, payload: volume });
+    },
+    changeSpeed: (value) => {
+      dispatch({ type: actionTypes.changeSpeed, payload: value });
     },
   };
 

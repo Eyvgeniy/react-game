@@ -42,7 +42,5 @@ class Sounds {
 const sounds = new Sounds();
 soundsArr.forEach(([name, path]) => sounds._addSound(name, path));
 musicArr.forEach(([name, path]) => sounds._addMusic(name, path));
-sounds._changeSoundsVolume(0.1);
-sounds.musicPlaylist.music.loop = true;
 
 export default sounds;
