@@ -6,7 +6,6 @@ import Options from './components/Options';
 import useGameReducer from './state/reducer';
 import githubImage from './assets/images/gitHub.png';
 import rsSchool from './assets/images/rs_school.svg';
-import fullScreen from './assets/images/full-screen.png';
 import './App.css';
 
 const menuMap = {
