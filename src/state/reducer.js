@@ -16,6 +16,7 @@ const actionTypes = {
   changeSnakeColor: 'CHANGE_SNAKE_COLOR',
   changeAppleColor: 'CHANGE_APPLE_COLOR',
   toggleWalls: 'TOGGLE_WALLS',
+  setDefault: 'SET_DEFAULT',
 };
 
 const defaultGameState = {
@@ -174,6 +175,10 @@ const reducer = (state, action) => {
       return { ...state, walls };
     }
 
+    case actionTypes.setDefault: {
+      return defaultGameState;
+    }
+
     default:
       throw new Error('Unknow type of action');
   }
@@ -218,6 +223,9 @@ const useGameReducer = (gameState) => {
     },
     toggleWalls: (value) => {
       dispatch({ type: actionTypes.toggleWalls, payload: value });
+    },
+    setDefault: () => {
+      dispatch({ type: actionTypes.setDefault });
     },
   };
 

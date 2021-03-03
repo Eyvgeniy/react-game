@@ -21,6 +21,8 @@ const Options = (props) => {
       </div>
       <hr />
       <CurrentOption {...props} />
+      <hr />
+      <button onClick={() => props.actions.setDefault()}>Set Default Options</button>
     </div>
   );
 };

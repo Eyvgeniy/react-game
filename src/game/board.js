@@ -71,7 +71,7 @@ class Board {
 
   _renderApple() {
     const { apple } = this.state;
-    renderRect(apple.x, apple.y, this.settings, this.ctx, this.settings.colors.apple);
+    renderRect(apple.x, apple.y, this.settings, this.ctx, this.state.appleColor);
   }
 
   _clearBoard() {
@@ -96,7 +96,7 @@ class Board {
     const settings = this.settings;
     const color = settings.colors.line;
     const { score } = this.state;
-    renderRect(450, 30, this.settings, this.ctx, this.settings.colors.apple);
+    renderRect(450, 30, this.settings, this.ctx, this.state.appleColor);
     ctx.fillStyle = color;
     // ctx.font = '30px Roboto';
     // ctx.fillText(`Score:`, 445, 50);
