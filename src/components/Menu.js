@@ -1,11 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import sounds from '../game/sounds';
 
 const Menu = (props) => {
   const { change, actions, state } = props;
+  const [fullscreen, setFullscreen] = useState(false);
   const handleNewGame = (e) => {
     change('game');
     actions.newGame();
+  };
+  const handleFullscreen = () => {
+    if (fullscreen) {
+      document.exitFullscreen();
+      setFullscreen(false);
+    } else {
+      document.getElementById('root').requestFullscreen();
+      setFullscreen(true);
+    }
   };
 
   useEffect(() => {
@@ -25,7 +35,7 @@ const Menu = (props) => {
         <h2>Options</h2>
       </li>
       <li>
-        <h2>Record Table</h2>
+        <h2 onClick={handleFullscreen}>Full Screen</h2>
       </li>
     </ul>
   );

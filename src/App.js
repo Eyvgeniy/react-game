@@ -6,6 +6,7 @@ import Options from './components/Options';
 import useGameReducer from './state/reducer';
 import githubImage from './assets/images/gitHub.png';
 import rsSchool from './assets/images/rs_school.svg';
+import fullScreen from './assets/images/full-screen.png';
 import './App.css';
 
 const menuMap = {
@@ -18,11 +19,14 @@ const menuMap = {
 function App({ savedState }) {
   const [menu, setMenu] = useState('title');
   const [gameState, actions] = useGameReducer(savedState);
+  const [fullscreen, setFullscreen] = useState(false);
+
   useEffect(() => {
     const keyDown = () => {
       setMenu('menu');
       window.removeEventListener('keydown', keyDown);
     };
+    console.log(Document.fullscreenElement);
     window.addEventListener('keydown', keyDown);
   }, []);
 
@@ -55,12 +59,12 @@ function App({ savedState }) {
         <footer>
           <div className="links">
             <div>
-              <a href="https://rs.school/js/">
+              <a href="https://github.com/Eyvgeniy">
                 <img src={githubImage} width="16" alt="github link" />
               </a>
             </div>
             <div className="link">
-              <a href="https://github.com/Eyvgeniy">
+              <a href="https://rs.school/js/">
                 <img src={rsSchool} width="32" height="16" alt="github link" />
               </a>
             </div>
