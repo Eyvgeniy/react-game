@@ -170,12 +170,30 @@ ul {
   padding: 0;
 }
 
-li:hover {
+.main-menu li:hover {
   transform: scale(1.2);
+}
+
+ul.options {
+  text-align: left;
+}
+ul.options li {
+  margin-top: 10px;
 }
 
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+canvas {
+  display: block;
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .screen {
+    width: 100%;
+    height: 400px;
   }
 }

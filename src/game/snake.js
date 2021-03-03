@@ -11,8 +11,6 @@ class Snake {
     let dx, dy;
     if (moveQueue.length > 0) {
       const move = moveQueue[0];
-      const newMoveQueue = moveQueue.slice(1);
-      // return { ...state, moveQueue: newMoveQueue, dx: move.dx, dy: move.dy };
       dx = move.dx;
       dy = move.dy;
     } else {

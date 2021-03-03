@@ -24,7 +24,6 @@ function App({ savedState }) {
       setMenu('menu');
       window.removeEventListener('keydown', keyDown);
     };
-    console.log(Document.fullscreenElement);
     window.addEventListener('keydown', keyDown);
   }, []);
 

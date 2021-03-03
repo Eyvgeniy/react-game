@@ -1,4 +1,3 @@
-import { useState } from 'react';
 const GameOptions = (props) => {
   const { state, actions } = props;
 
@@ -10,16 +9,16 @@ const GameOptions = (props) => {
     }
   };
   return (
-    <ul>
+    <ul class="options">
       <li>
-        Walls......................
+        Walls............................
         <span onClick={() => actions.toggleWalls(!state.walls)}>{state.walls ? 'On' : 'Off'}</span>
       </li>
       <li>
-        Speed......................<span onClick={handleSpeed}>{state.speed}</span>
+        Speed............................<span onClick={handleSpeed}>{state.speed}</span>
       </li>
       <li>
-        <span>Snake color</span>........
+        <span>Snake color</span>............
         <input
           onChange={(e) => actions.changeSnakeColor(e.target.value)}
           value={state.snakeColor}
@@ -27,7 +26,7 @@ const GameOptions = (props) => {
         ></input>
       </li>
       <li>
-        <span>Apple color</span>........
+        <span>Apple color</span>............
         <input
           onChange={(e) => actions.changeAppleColor(e.target.value)}
           value={state.appleColor}

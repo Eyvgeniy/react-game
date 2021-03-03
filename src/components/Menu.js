@@ -22,7 +22,7 @@ const Menu = (props) => {
     sounds.musicPlaylist.music.play();
   }, []);
   return (
-    <ul>
+    <ul class="main-menu">
       <li onClick={handleNewGame}>
         <h2>New Game</h2>
       </li>

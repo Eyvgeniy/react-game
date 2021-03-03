@@ -1,7 +1,5 @@
 # REACT GAME - FIRST TASK RS SCHOOL 2021Q1
 
-https://eyvgeniy-react-game.surge.sh/
-
 # Snake game
 
 ## Simple Snake game build on react and canvas

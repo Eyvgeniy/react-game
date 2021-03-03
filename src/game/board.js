@@ -75,7 +75,6 @@ class Board {
   }
 
   _clearBoard() {
-    const { width, height } = this.settings.board;
     this.ctx.clearRect(0, 0, 560, 440);
   }
 
@@ -98,12 +97,8 @@ class Board {
     const { score } = this.state;
     renderRect(450, 30, this.settings, this.ctx, this.state.appleColor);
     ctx.fillStyle = color;
-    // ctx.font = '30px Roboto';
-    // ctx.fillText(`Score:`, 445, 50);
     ctx.font = '35px Roboto';
     ctx.fillText(`0${score}`, 480, 50);
-    ctx.font = '30px Roboto';
-    ctx.fillText(`Top: 100`, 445, 90);
   }
 
   _renderGameOver() {

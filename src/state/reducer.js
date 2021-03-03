@@ -107,8 +107,6 @@ const reducer = (state, action) => {
       if (Math.abs(movement.dx) !== Math.abs(prevX) || Math.abs(movement.dy) !== Math.abs(prevY)) {
         return {
           ...state,
-          // dx: movement.dx,
-          // dy: movement.dy,
           moveQueue: [...moveQueue, { dx: movement.dx, dy: movement.dy }],
         };
       }
