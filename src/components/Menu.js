@@ -5,7 +5,7 @@ const Menu = (props) => {
   const { change, actions, state } = props;
   const handleNewGame = (e) => {
     change('game');
-    actions.setDefault();
+    actions.newGame();
   };
 
   useEffect(() => {

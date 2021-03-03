@@ -93,7 +93,7 @@ button:focus {
 }
 
 .button-arrow.active {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 .button {
@@ -114,7 +114,7 @@ button:focus {
 }
 
 .menu-button:hover {
-  opacity: 70%;
+  opacity: 0.7;
 }
 
 .menu-button-label {

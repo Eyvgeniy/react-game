@@ -9,10 +9,12 @@ const actionTypes = {
   changeDirection: 'CHANGE_DIRECTION',
   getMove: 'GET_MOVE',
   eatApple: 'EAT_APPLE',
-  setDefault: 'SET_DEFAUL',
+  newGame: 'NEW_GAME',
   changeSoundVolume: 'CHANGE_SOUND_VOLUME',
   changeMusicVolume: 'CHANGE_MUSIC_VOLUME',
   changeSpeed: 'CHANGE_SPEED',
+  changeSnakeColor: 'CHANGE_SNAKE_COLOR',
+  changeAppleColor: 'CHANGE_APPLE_COLOR',
 };
 
 const defaultGameState = {
@@ -23,24 +25,19 @@ const defaultGameState = {
     { x: 50, y: 150 },
   ],
   cells: 4,
+  snakeColor: '#000',
   dx: 20,
   dy: 0,
   moveQueue: [],
-  apple: { x: 290, y: 150, ate: false },
+  apple: { x: 290, y: 150 },
+  appleColor: '#d62828',
   speed: 1,
   score: 0,
   isGameOver: false,
   isStart: false,
   sound: 0.1,
   music: 0.1,
-};
-
-const speedMap = {
-  1: 150,
-  2: 120,
-  3: 90,
-  4: 60,
-  5: 30,
+  walls: true,
 };
 
 sounds._changeSoundsVolume(defaultGameState.sound);
@@ -129,9 +126,9 @@ const reducer = (state, action) => {
       };
     }
 
-    case actionTypes.setDefault: {
-      const { apple, tail, score, cells, dx, dy } = defaultGameState;
-      return { ...state, apple, tail, score, cells, dx, dy };
+    case actionTypes.newGame: {
+      const { music, speed, sound, snakeColor, appleColor } = state;
+      return { ...defaultGameState, music, sound, speed, snakeColor, appleColor };
     }
 
     case actionTypes.changeSoundVolume: {
@@ -149,6 +146,16 @@ const reducer = (state, action) => {
     case actionTypes.changeSpeed: {
       const speed = action.payload;
       return { ...state, speed };
+    }
+
+    case actionTypes.changeSnakeColor: {
+      const color = action.payload;
+      return { ...state, snakeColor: color };
+    }
+
+    case actionTypes.changeAppleColor: {
+      const color = action.payload;
+      return { ...state, appleColor: color };
     }
 
     default:
@@ -174,8 +181,8 @@ const useGameReducer = (gameState) => {
       dispatch({ type: actionTypes.eatApple });
     },
 
-    setDefault: () => {
-      dispatch({ type: actionTypes.setDefault });
+    newGame: () => {
+      dispatch({ type: actionTypes.newGame });
     },
 
     changeSoundVolume: (volume) => {
@@ -186,6 +193,12 @@ const useGameReducer = (gameState) => {
     },
     changeSpeed: (value) => {
       dispatch({ type: actionTypes.changeSpeed, payload: value });
+    },
+    changeAppleColor: (value) => {
+      dispatch({ type: actionTypes.changeAppleColor, payload: value });
+    },
+    changeSnakeColor: (value) => {
+      dispatch({ type: actionTypes.changeSnakeColor, payload: value });
     },
   };
 

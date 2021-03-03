@@ -57,14 +57,14 @@ class Board {
   _renderSnakeRect(x, y) {
     const ctx = this.ctx;
     const settings = this.settings;
-    const color = settings.colors.line;
+    const color = this.state.snakeColor;
     renderRect(x, y, settings, ctx, color);
   }
 
   _renderSnakeHead(x, y) {
     const ctx = this.ctx;
     const settings = this.settings;
-    const color = settings.colors.line;
+    const color = this.state.snakeColor;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, settings.rect.side, settings.rect.side);
   }

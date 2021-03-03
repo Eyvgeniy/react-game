@@ -16,10 +16,20 @@ const GameOptions = (props) => {
         Speed......................<span onClick={handleSpeed}>{state.speed}</span>
       </li>
       <li>
-        <span>Snake color</span>........<input type="color"></input>
+        <span>Snake color</span>........
+        <input
+          onChange={(e) => actions.changeSnakeColor(e.target.value)}
+          value={state.snakeColor}
+          type="color"
+        ></input>
       </li>
       <li>
-        <span>Apple color</span>........<input type="color"></input>
+        <span>Apple color</span>........
+        <input
+          onChange={(e) => actions.changeAppleColor(e.target.value)}
+          value={state.appleColor}
+          type="color"
+        ></input>
       </li>
     </ul>
   );
