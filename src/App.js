@@ -18,7 +18,6 @@ const menuMap = {
 function App({ savedState }) {
   const [menu, setMenu] = useState('title');
   const [gameState, actions] = useGameReducer(savedState);
-  const [fullscreen, setFullscreen] = useState(false);
 
   useEffect(() => {
     const keyDown = () => {
