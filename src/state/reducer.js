@@ -56,7 +56,7 @@ const isCollision = (head, tail) => {
 const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.move: {
-      const { x, y } = action.payload;
+      const { x, y, dx, dy } = action.payload;
       const { tail } = state;
       const {
         ceil,
@@ -89,7 +89,7 @@ const reducer = (state, action) => {
       if (newTail.length > state.cells) {
         newTail.pop();
       }
-      const newState = { ...state, tail: newTail, isStart: true };
+      const newState = { ...state, tail: newTail, isStart: true, dx, dy };
       setToLocalStorage(newState);
       return newState;
     }
@@ -107,9 +107,9 @@ const reducer = (state, action) => {
       if (Math.abs(movement.dx) !== Math.abs(prevX) || Math.abs(movement.dy) !== Math.abs(prevY)) {
         return {
           ...state,
-          dx: movement.dx,
-          dy: movement.dy,
-          // moveQueue: [...moveQueue, { dx: movement.dx, dy: movement.dy }],
+          // dx: movement.dx,
+          // dy: movement.dy,
+          moveQueue: [...moveQueue, { dx: movement.dx, dy: movement.dy }],
         };
       }
 
@@ -118,12 +118,13 @@ const reducer = (state, action) => {
 
     case actionTypes.getMove: {
       const { moveQueue } = state;
-      if (moveQueue.length > 0) {
-        const move = moveQueue[0];
-        const newMoveQueue = moveQueue.slice(1);
-        return { ...state, moveQueue: newMoveQueue, dx: move.dx, dy: move.dy };
-      }
-      return state;
+      // if (moveQueue.length > 0) {
+      //   const move = moveQueue[0];
+      //   const newMoveQueue = moveQueue.slice(1);
+      //   return { ...state, moveQueue: newMoveQueue, dx: move.dx, dy: move.dy };
+      // }
+      // return state;
+      return { ...state, moveQueue: moveQueue.slice(1) };
     }
 
     case actionTypes.eatApple: {
@@ -195,7 +196,7 @@ const useGameReducer = (gameState) => {
     changeDirection: (movement) => {
       dispatch({ type: actionTypes.changeDirection, payload: { movement } });
     },
-    getMove: () => {
+    unshiftMove: () => {
       dispatch({ type: actionTypes.getMove });
     },
     eatApple: () => {

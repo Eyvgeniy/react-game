@@ -3,6 +3,7 @@ import SnakeGame from '../game/game';
 import Board from '../game/board';
 import useKeyDown from '../hooks/useKeyDown';
 import useRafHook from '../hooks/useRafAnimation';
+import useInterval from '../hooks/useInterval';
 import settings from '../game/settings';
 
 const Game = (props) => {
@@ -10,7 +11,8 @@ const Game = (props) => {
   const { isGameOver, speed } = state;
   const canvasRef = useRef();
   const game = new SnakeGame(state, actions);
-  useRafHook(() => game._gameLoop(), isGameOver ? null : speed);
+  // useRafHook(() => game._gameLoop(), isGameOver ? null : speed);
+  useInterval(() => game._gameLoop(), isGameOver ? null : 300 / speed);
   useKeyDown(change, actions);
   useEffect(() => {
     const canvas = canvasRef.current;

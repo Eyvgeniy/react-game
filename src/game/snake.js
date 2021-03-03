@@ -7,14 +7,27 @@ class Snake {
   }
 
   _moveSnake = () => {
-    const { tail, dx, dy, apple } = this.state;
+    const { tail, apple, moveQueue } = this.state;
+    let dx, dy;
+    if (moveQueue.length > 0) {
+      const move = moveQueue[0];
+      const newMoveQueue = moveQueue.slice(1);
+      // return { ...state, moveQueue: newMoveQueue, dx: move.dx, dy: move.dy };
+      dx = move.dx;
+      dy = move.dy;
+    } else {
+      dx = this.state.dx;
+      dy = this.state.dy;
+    }
+    // return state;
     const { x, y } = tail[0];
     const newX = x + dx;
     const newY = y + dy;
     if (apple.x === newX && apple.y === newY) {
       this.actions.eatApple();
     } else {
-      this.actions.move({ x: newX, y: newY });
+      this.actions.move({ x: newX, y: newY, dx, dy });
+      this.actions.unshiftMove();
     }
   };
 }
